@@ -12,7 +12,8 @@ import { Splash,
     Chat,
     UserProfile,
     UpdateProfile,
-    ContractorProfile
+    ContractorProfile,
+    Category
 } from '../pages';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {BottomNavigator} from '../components';
@@ -26,7 +27,7 @@ const MainApp = () => {
     return (
         <Tab.Navigator tabBar={props => <BottomNavigator {...props} /> } >
             <Tab.Screen name="Beranda" component={Home} />
-            <Tab.Screen name="Kategori" component={Building} />
+            <Tab.Screen name="Kategori" component={Category} />
             <Tab.Screen name="Pesan" component={Message} />
             <Tab.Screen name="Properti" component={Building} />
             <Tab.Screen name="Profile" component={UserProfile} />

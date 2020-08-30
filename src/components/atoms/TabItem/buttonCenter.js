@@ -18,7 +18,7 @@ const buttonCenter = ({onPress, active}) => {
                 <View style={[styles.button]}>
                     <TouchableHighlight onPress={onPress} underlayColor={colors.primary}>
                     {/* style={{ transform: [{ rotate: rotation }] }} */}
-                            <Icon name="chatbubble-ellipses-outline" type="ionicon"  size={24} color={active ? colors.white : colors.blackSmooth } />
+                            <Icon name="chatbox-ellipses" type="ionicon"  size={24} color={active ? '#f6cd61' : colors.white } />
                     </TouchableHighlight> 
                 </View>
             </View>

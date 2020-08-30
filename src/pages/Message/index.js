@@ -60,11 +60,11 @@ const Message = ({navigation}) => {
                                 data: chat.detailContractor
                             }
                             return <List 
-                            key={chat.id}
-                            profile={chat.detailContractor.photo} 
-                            name={chat.detailContractor.fullName}
-                            desc={chat.lastContentChat}
-                            onPress={() => navigation.navigate('Chat', dataContractor)}
+                                key={chat.id}
+                                profile={chat.detailContractor.photo} 
+                                name={chat.detailContractor.fullName}
+                                desc={chat.lastContentChat}
+                                onPress={() => navigation.navigate('Chat', dataContractor)}
                             />
                         })
                     }

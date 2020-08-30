@@ -44,5 +44,6 @@ const styles = StyleSheet.create({
     newsImage:{
         width:80,
         height:60,
+        borderRadius:10,
     }
 })

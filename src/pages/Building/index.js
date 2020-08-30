@@ -12,6 +12,7 @@ import { Bullets } from 'react-native-easy-content-loader'
 const Building = () => {
     const [news, setNews] = useState([])
 
+
     useEffect(() => {
         Fire.database()
         .ref('news/')

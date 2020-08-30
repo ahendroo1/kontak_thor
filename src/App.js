@@ -15,7 +15,9 @@ const AppMain = () => {
   return (
     <>
       <NavigationContainer>
-        <StatusBar backgroundColor="#00b7c2" barStyle="light-content" />
+        {
+          stateGlobal.statusbar ? <StatusBar backgroundColor="#00b7c2" barStyle="light-content" /> : <StatusBar backgroundColor="rgba(0, 0, 0, 0)" barStyle="light-content" translucent />
+        }
           
         <Router />
       </NavigationContainer>

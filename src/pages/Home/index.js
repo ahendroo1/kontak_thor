@@ -19,6 +19,7 @@ const Home = ({navigation}) => {
         getCategoryUser();
         getContractor();
         getNews();
+        
     }, []);
 
     const getContractor = () => {
@@ -70,22 +71,39 @@ const Home = ({navigation}) => {
     }
     
     const getCategoryUser = () => {
-         Fire.database()
-        .ref('contractor_category/')
-        .once('value')
-        .then((res) => {
-            // console.log(res)
-            const data = res.val();
-            const filterData = data.filter(el => el !== null);
 
-            setCategoryUser(filterData)
+        
+        const rootDB =  Fire.database().ref(urlHistory);
+        const urlHistory = `contractor_category/`;
+        const messageDB = rootDB.child(urlHistory)
+
+        messageDB.on('value', async snapmesage => {
+
+            if (snapmesage.val()) {
+
+                const oldData = snapmesage.val()
+                const data = []
+                const promise = await Object.keys(oldData).map(async key => {
+
+                    const urlUidContractor = `doctors/${oldData[key].uid}`;
+                    const detailContractor = await rootDB.child(urlUidContractor).once('value');
+
+                    const urlIdCategory = `category/${oldData[key].category_id}`;
+                    const detailCategory = await rootDB.child(urlIdCategory).once('value');
+                    data.push({
+                        id:key,
+                        categorys: detailCategory.val(),
+                        contractor: detailContractor.val(),
+                        ...oldData[key]
+                    })
+                    
+                })
+                await Promise.all(promise)
+                // console.log(data)
+                setCategoryUser(data)
+            }
         })
-        .catch(err => {
-            showMessage({
-                message: err.message,
-                type: 'warning'
-            })
-        })
+
     }
     const getCategory = () => {
          Fire.database()
@@ -117,19 +135,20 @@ const Home = ({navigation}) => {
                     {/* <Text style={styles.welcome}></Text> */}
                     <View style={styles.wrapperScroll}>
                         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                            
                             <View style={styles.category}>
-                                {/* {  categorys < 1 ? <InstagramLoader active primaryColor={colors.primary} /> :
-                                    categorys.map(category => {
+                                {  categoryUser < 1 ? <InstagramLoader active primaryColor={colors.primary} /> :
+                                    categoryUser.map(category => {
+                                        // console.log(category)
                                         return <HomeCategory 
                                             key={category.id} 
-                                            category={category.category}
-                                            desc={category.desc}
-                                            onPress={() => navigation.navigate('ChooseContractor', category) }
+                                            category={category.contractor.fullName}
+                                            desc={category.contractor.profession}
+                                            image={category.categorys.image}
+                                            photo={category.contractor.photo}
+                                            // onPress={() => navigation.navigate('UserContent', category) }
                                         />
                                     })
-                                } */}
- 
+                                }
                             </View>
                         </ScrollView>
                     </View> 
@@ -137,14 +156,15 @@ const Home = ({navigation}) => {
                     <View style={{ padding:0 }} >
                         <ScrollView horizontal showsHorizontalScrollIndicator={false} >
                                 {
-                                    categorys < 1 ? <Bullets active listSize={4} primaryColor={colors.primary} /> :
+                                    categorys < 1 ? <Bullets active listSize={1} primaryColor={colors.primary} /> :
                                     categorys.map(category => {
                                         return <View 
                                                     style={styles.containerCategory} 
-                                                    key={category.id} 
+                                                    key={category.id}
                                                 >
                                                     <TouchableOpacity style={styles.categoryButton} 
-                                                        onPress={() => navigation.navigate('ChooseContractor', category) }>
+                                                        onPress={() => navigation.navigate('ChooseContractor', category) } 
+                                                        >
                                                         <Text style={styles.categoryText}>{category.category}</Text>
                                                     </TouchableOpacity>
                                                 </View>

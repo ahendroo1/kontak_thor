@@ -5,10 +5,11 @@ import { colors } from '../../../utils';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Icon } from 'react-native-elements'
 import AddButton from './buttonCenter'
+import { useDispatch, useSelector } from 'react-redux';
 
 const TabItem = ({title, active, onPress, onLongPress}) => {
 
-   
+    const dispatch = useDispatch()
     
     if(title === 'Pesan'){
         return  (
@@ -16,45 +17,49 @@ const TabItem = ({title, active, onPress, onLongPress}) => {
                 <AddButton  onPress={onPress} active={active} />
             </View>
         )
-                
     } 
 
     if(title === 'Beranda'){
         return (
             <TouchableOpacity style={styles.container} onPress={onPress} onLongPress={onLongPress} >
                 <Icon             
-                name='file-tray-full-outline'
+                name='home'
                 type='ionicon'
-                color={active ? colors.white : colors.blackSmooth}
+                color={active ? '#f6cd61' : colors.white}
                 />
-                <Text style={styles.text(active)}>{title}</Text>
+                
             </TouchableOpacity>
-        ) 
-
+        )
     } 
     
     if(title === 'Kategori'){
         return (
             <TouchableOpacity style={styles.container} onPress={onPress} onLongPress={onLongPress} >
                 <Icon             
-                name='filter-outline'
+                name='file-tray-full'
                 type='ionicon'
-                color={active ? colors.white : colors.blackSmooth}
+                color={active ? '#f6cd61' : colors.white}
                 />
-                <Text style={styles.text(active)}>{title}</Text>
             </TouchableOpacity>
         ) 
 
     } 
     if(title === 'Properti'){
+        if(active){
+            
+            dispatch({type: 'SET_STATUSBAR', value:false})
+        } else {
+            
+            dispatch({type: 'SET_STATUSBAR', value:true})
+        }
         return (
             <TouchableOpacity style={styles.container} onPress={onPress} onLongPress={onLongPress} >
                 <Icon             
-                name='color-filter-outline'
+                name='business'
                 type='ionicon'
-                color={active ? colors.white : colors.blackSmooth}
+                color={active ? '#f6cd61' : colors.white}
                 />
-                <Text style={styles.text(active)}>{title}</Text>
+                
             </TouchableOpacity>
         )
     } 
@@ -62,11 +67,11 @@ const TabItem = ({title, active, onPress, onLongPress}) => {
         return (
             <TouchableOpacity style={styles.container} onPress={onPress} onLongPress={onLongPress} >
                 <Icon             
-                name='person-circle-outline'
+                name='person-circle'
                 type='ionicon'
-                color={active ? colors.white : colors.blackSmooth}
+                color={active ? '#f6cd61' : colors.white}
                 />
-                <Text style={styles.text(active)}>{title}</Text>
+                
             </TouchableOpacity>
         ) 
 
@@ -75,11 +80,11 @@ const TabItem = ({title, active, onPress, onLongPress}) => {
     return (
         <TouchableOpacity style={styles.container} onPress={onPress} onLongPress={onLongPress} >
             <Icon             
-            name='file-tray-full-outline'
+            name='file-tray-full-ellipses'
             type='ionicon'
-            color={active ? colors.white : colors.blackSmooth}
+            color={active ? '#f6cd61' : colors.white}
             />
-            <Text style={styles.text(active)}>{title}</Text>
+            
         </TouchableOpacity>
     ) 
 

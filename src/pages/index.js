@@ -10,6 +10,7 @@ import Chat from './Chat';
 import UserProfile from './UserProfile';
 import UpdateProfile from './UpdateProfile';
 import ContractorProfile from './ContractorProfile';
+import Category from './Category';
 
 export { Splash, GetStarted, 
     Register,
@@ -22,4 +23,5 @@ export { Splash, GetStarted,
     UserProfile,
     UpdateProfile,
     ContractorProfile,
+    Category,
 };
