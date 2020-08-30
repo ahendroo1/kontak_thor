@@ -1,0 +1,39 @@
+{
+    "data": [
+        {
+            "id":1,
+            "category": "Hotel",
+            "desc": "Tools DescTools DescTools DescTools Desc"
+        },
+        {
+            "id":2,
+            "category": "Building",
+            "desc": "Tools DescTools DescTools DescTools Desc"
+        },
+        {
+            "id":3,
+            "category": "House",
+            "desc": "Tools DescTools DescTools DescTools Desc"
+        },
+        {
+            "id":4,
+            "category": "Appartment",
+            "desc": "Tools DescTools DescTools DescTools Desc"
+        },
+        {
+            "id":5,
+            "category": "Store",
+            "desc": "Tools DescTools DescTools DescTools Desc"
+        },
+        {
+            "id":6,
+            "category": "Market",
+            "desc": "Tools DescTools DescTools DescTools Desc"
+        },
+        {
+            "id":7,
+            "category": "Mall",
+            "desc": "Tools DescTools DescTools DescTools Desc"
+        }
+    ]
+}
